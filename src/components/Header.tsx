@@ -1,4 +1,3 @@
-[10/07/2026 7:26 PM] 2050_fh: import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Cairo } from "next/font/google";
 import "./globals.css";
