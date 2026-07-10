@@ -1,4 +1,37 @@
-"use client";
+[10/07/2026 7:26 PM] 2050_fh: import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import { Cairo } from "next/font/google";
+import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Al Mazraa | نزرع الأمل، ونحصد المستقبل",
+  description:
+    "Al Mazraa is a modern aquaponics farm in Eltarf, Algeria, growing premium, chemical-free produce in a closed-loop sustainable ecosystem.",
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="ar" dir="rtl" className={cairo.variable}>
+      <body className="flex min-h-screen flex-col bg-white font-sans text-slate-900 antialiased">
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
+      </body>
+    </html>
+  );
+}
+[10/07/2026 7:27 PM] 2050_fh: "use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -74,38 +107,3 @@ export default function Header() {
           <span className="text-xl">{isMenuOpen ? "✕" : "☰"}</span>
         </button>
       </div>
-
-      {isMenuOpen && (
-        <div className="border-t border-emerald-900/10 bg-white px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="flex items-center justify-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800"
-            >
-              <span aria-hidden>🌐</span>
-              {language === "ar" ? "English" : "العربية"}
-            </button>
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="rounded-full bg-emerald-700 px-5 py-2 text-center text-sm font-semibold text-white"
-            >
-              {t("navCta")}
-            </Link>
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-}
