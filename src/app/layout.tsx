@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"; // تأكد من وجود هذا الاستيراد
 import type { ReactNode } from "react";
 import { Cairo } from "next/font/google";
 import "./globals.css";
@@ -14,8 +14,7 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: "Al Mazraa | نزرع الأمل، ونحصد المستقبل",
-  description:
-    "Al Mazraa is a modern aquaponics farm in Eltarf, Algeria, growing premium, chemical-free produce in a closed-loop sustainable ecosystem.",
+  description: "Al Mazraa is a modern aquaponics farm in Eltarf, Algeria...",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
